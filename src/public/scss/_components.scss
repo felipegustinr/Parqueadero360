@@ -1,0 +1,113 @@
+@mixin btn-base {
+    padding: 0.5rem 1rem;
+    border-radius: 0.25rem;
+}
+
+@mixin btn-sm-modify {
+    font-size: 0.75rem;
+    padding: 0.1rem 1rem;
+}
+
+$color-main: #185678;
+
+.btn-main{
+    @include btn-base();
+    background-color: $color-main;
+    color: white;
+    border: none;
+    border: solid 1px $color-main;
+
+    &:hover {
+        background-color: white;
+        color: $color-main;
+        
+    }
+
+    &-s{
+        @extend .btn-main;
+        @include btn-sm-modify();
+    }
+
+    
+}
+
+.btn-sec {
+    @include btn-base();
+    color: black;
+    background-color: transparent;
+    border: none;
+
+    &:hover {
+        color: #888;
+    }
+    
+    &-s {
+        @extend .btn-sec;
+        @include btn-sm-modify();
+    }
+}
+
+.main-menu{
+    li{
+        
+        list-style: none;
+        display: inline;
+        a{
+            text-decoration: none;
+        }
+    }
+}
+
+.icon-sm {
+    i{
+        font-size: 0.75rem;
+        padding: 0.25rem;
+        border-radius: 50%;
+        color: $color-main ;
+        box-shadow: 0 0 10px #00000042;
+    }
+}
+
+.feature {
+    display: flex;
+    flex-direction: column;
+    
+    .icon{
+        color: $color-main;
+        font-size: 2rem;
+        
+    }
+    .description{
+        .title{
+            float: left;
+            width: 100%;
+            height: 0px;
+            padding-top: 10rem;
+            font-size: 1rem;
+            color: $color-main;
+            
+
+            
+            
+        }
+        .text{
+
+        }
+    }
+
+}
+
+.login{
+    color:$color-main;
+    display: flex;
+    justify-content: center;
+    margin: 5rem;
+    padding-bottom: 1rem;
+}
+.registrer{
+    color:$color-main;
+    display: flex;
+    justify-content: center;
+    margin: 5rem;
+    padding-bottom: 9rem;
+}
