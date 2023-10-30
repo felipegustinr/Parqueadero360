@@ -145,7 +145,8 @@ logo img {
   height: px;
 }
 
-.container .row .col-md-4 .card .card-title {
+.container .row .col-md-3 .card .card-title {
   text-align: center;
+  color: #0D6EFD;
 }
 /*# sourceMappingURL=style.css.map */
