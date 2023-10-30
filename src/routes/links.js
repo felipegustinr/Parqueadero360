@@ -6,4 +6,7 @@ router.get('/register',(req, res) =>{
 res.render('links/register');
 });
 
+router.post('/register',(req, res) =>{
+    res.render('datos recibidos');
+    });
 module.exports= router;
