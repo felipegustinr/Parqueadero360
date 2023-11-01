@@ -7,7 +7,18 @@ router.get('/register',(req, res) =>{
 res.render('links/register');
 });
 
-router.post('/register', (req, res)=> {
-res.send('recibido')
+router.post('/register',  (req, res)=> {
+
+    const {idUsuario = 1, nombres, email, phone, address } = req.body
+    const new_User = {
+        idUsuario,
+        nombres,
+        email,
+        phone,
+        address
+    };
+     pool.query('INSERT INTO usuario set ?', [new_User]);
+    console.log(new_User)
+    res.send('recibido');
 });
 module.exports= router;
