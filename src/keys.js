@@ -5,6 +5,6 @@ module.exports={
         port:('3306'),
         user: ('admin'),
         password: ('TUvGyzf5q5'),
-        database:('parking360')
+        database:('ParqueaderoTest')
     }
 }
