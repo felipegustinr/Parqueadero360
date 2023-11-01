@@ -7,7 +7,7 @@ router.get('/register',(req, res) =>{
 res.render('links/register');
 });
 
-router.post('/register',  (req, res)=> {
+router.post('/register', async (req, res)=> {
 
     const {idUsuario = 1, nombres, email, phone, address } = req.body
     const new_User = {
@@ -17,7 +17,7 @@ router.post('/register',  (req, res)=> {
         phone,
         address
     };
-     pool.query('INSERT INTO usuario set ?', [new_User]);
+    await pool.query('INSERT INTO usuario set ?', [new_User]);
     console.log(new_User)
     res.send('recibido');
 });
