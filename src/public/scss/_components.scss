@@ -100,3 +100,9 @@ $color-main: #185678;
   margin: 5rem;
   padding-bottom: 9rem;
 }
+input[type=number]::-webkit-inner-spin-button, 
+      input[type=number]::-webkit-outer-spin-button { 
+        -webkit-appearance: none; 
+        margin: 0; 
+      }
+      input[type=number] { -moz-appearance:textfield; }
