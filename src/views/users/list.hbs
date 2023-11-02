@@ -1,0 +1,20 @@
+<div class="container p-4">
+    <div class="row">
+        {{#each users}}
+            <div class="col-md-3">
+                <div class="card text-center">
+                    <div class="car body">
+                        <a href="">
+                            <h3 class="card-title text-uppercase">
+                                {{nombres}}
+                            </h3>
+                        </a>
+                        <p class="m-2">{{email}}</p>
+                        <p class="m-2"> Telefono: {{phone}}</p>
+                        <p class="m-2">{{address}}</p>
+                    </div>
+                </div>
+            </div>
+        {{/each}}
+    </div>
+</div>
