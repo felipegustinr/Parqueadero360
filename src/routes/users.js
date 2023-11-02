@@ -23,7 +23,7 @@ router.post('/register', async (req, res)=> {
 router.get('/', async (req, res)=>{
     const users= await pool.query('SELECT * FROM ParqueaderoTest.Usuario;');
     console.log(users)
-    res.send('usuarios listados')
+    res.send(users)
 });
 
 
