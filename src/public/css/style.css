@@ -92,6 +92,10 @@
   padding-bottom: 9rem;
 }
 
+.nd {
+  color: #185678;
+}
+
 input[type=number]::-webkit-inner-spin-button,
 input[type=number]::-webkit-outer-spin-button {
   -webkit-appearance: none;
