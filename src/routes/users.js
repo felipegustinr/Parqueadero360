@@ -17,7 +17,7 @@ router.post('/register', async (req, res)=> {
         phone,
         address
     };
-    await pool.query('INSERT INTO Usuario (nombres, email, phone, address) VALUES (?, ?, ?, ?)', [new_User.nombres, new_User.email, new_User.phone, new_User.address,new_User.created]);
+    await pool.query('INSERT INTO Usuario (nombres, email, phone, address) VALUES (?, ?, ?, ?)', [new_User.nombres, new_User.email, new_User.phone, new_User.address]);
     res.redirect('/users')
 });
 
