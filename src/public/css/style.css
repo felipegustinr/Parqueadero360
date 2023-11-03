@@ -93,7 +93,7 @@
 }
 
 .nd {
-  color: #185678;
+  color: red;
 }
 
 input[type=number]::-webkit-inner-spin-button,
