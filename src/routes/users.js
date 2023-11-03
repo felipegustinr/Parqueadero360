@@ -17,13 +17,19 @@ router.post('/register', async (req, res)=> {
         phone,
         address
     };
-    await pool.query('INSERT INTO Usuario (nombres, email, phone, address) VALUES (?, ?, ?, ?)', [new_User.nombres, new_User.email, new_User.phone, new_User.address, new_User.created]);
-    res.send('Datos enviados')
+    await pool.query('INSERT INTO Usuario (nombres, email, phone, address) VALUES (?, ?, ?, ?)', [new_User.nombres, new_User.email, new_User.phone, new_User.address,new_User.created]);
+    res.redirect('/users')
 });
+
 router.get('/', async (req, res)=>{
     const users= await pool.query('SELECT * FROM ParqueaderoTest.Usuario;');
     res.render('users/list',{users});
 });
 
+router.get('/delete/:idUsuario', async (req, res) =>{
+    const {idUsuario} = req.params;
+    await pool.query('DELETE FROM Usuario WHERE (idUsuario = ? )',[idUsuario]);
+    res.redirect('/users');
+});
 
 module.exports= router;
