@@ -12,12 +12,18 @@
                         <p class="m-2">Correo Electronico: {{email}}</p>
                         <p class="m-2"> Telefono: {{phone}}</p>
                         <p class="m-2">Dirección: {{address}}</p>
-                        <p class="m-2"> Creado hace: {{timeago created}}</p>
+                        <p class="m-2"> Creado hace: {{ created}}</p>
                         <a href="" class="btn btn-secondary">Editar</a>
                         <a href="/users/delete/{{idUsuario}}" class="btn btn-danger">Eliminar</a>
                     </div>
                 </div>
             </div>
-        {{/each}}
+            {{else}}
+            <div class="col-md-4 mx-auto">
+                <div class="card card-body text-certer">
+                    <p class="nd">No hay Datos creados</p>
+                </div>
+            </div>
+            {{/each}}
     </div>
 </div>
