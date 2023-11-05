@@ -1,30 +1,43 @@
 <div class="container p-4">
     <div class="row">
-        {{#each users}}
-            <div class="col-md-3">
-                <div class="card text-center">
-                    <div class="car body">
-                        <a href="">
-                            <h3 class="card-title text-uppercase">
-                                {{nombres}}
-                            </h3>
-                        </a>
-                        <p class="m-2">Correo Electronico: {{email}}</p>
-                        <p class="m-2"> Telefono: {{phone}}</p>
-                        <p class="m-2">Dirección: {{address}}</p>
-                        <p class="m-2"> Creado hace: {{ created}}</p>
-                        <a href="/users/edit/{{idUsuario}}" class="btn btn-secondary">Editar</a>
-                        <a href="/users/delete/{{idUsuario}}" class="btn btn-danger">Eliminar</a>
-                    </div>
+        <div class="col-md-6 mx-auto">
+            <div class="card">
+                <div class="card-title">
+                    <h3>Editar Usuario</h3>
+                </div>
+                <div class="card-body">
+                    <form action="/users/edit/{{list.idUsuario}}" method="POST">
+                        <div class="form-group">
+                            <label for="Nombres" class="form-label">Nombres & Apellidos</label>
+                            <input  type="text" value="{{list.nombres}}" required name="nombres" placeholder="Escriba aquí" class="form-control"
+                                autofocus style="text-transform: uppercase;" />
+                        </div>
+                        <div class="form-group">
+                            <label for="Correo" class="form-label">Correo Electronico</label>
+                            <input type="email" value="{{list.email}}"  required name="email" placeholder="micorreo@correo.com" class="form-control"
+                                autofocus style="text-transform: lowercase"  />
+                        </div>
+                        <div class="form-group">
+                            <label for="Telefono" class="form-label">Telefono de Contacto</label>
+                            <input type="number" value="{{list.phone}}" required name="phone" placeholder="1234567890" class="form-control"
+                                autofocus />
+                        </div>
+                        <div class="form-group">
+                            <label for="direccion" class="form-label">Dirección Residencia</label>
+                            <input type="text" value="{{list.address}}" required name="address" placeholder="Escriba aquí" class="form-control"
+                                autofocus />
+                        </div>
+                        <div class="form-group">
+                            <br>
+                            <div class="d-grid gap-2">
+                                <button class="btn btn-success" type="submit">Guardar Cambios</button>
+                                <a href="/users/" class="btn btn-light" type="button">Cancelar</a>
+                            </div>
+
+                        </div>
+                    </form>
                 </div>
             </div>
-            {{else}}
-            <div class="col-md-4 mx-auto">
-                <div class="card card-body text-center">
-                    <p >No hay Datos creados</p>
-                    <a href="/users/register">Crear</a>
-                </div>
-            </div>
-            {{/each}}
+        </div>
     </div>
 </div>
