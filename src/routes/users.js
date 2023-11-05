@@ -32,4 +32,10 @@ router.get('/delete/:idUsuario', async (req, res) =>{
     res.redirect('/users');
 });
 
+router.get('/edit/:idUsuario', async (req,res)=>{
+    const{idUsuario} = req.params;
+    const users = await pool.query('SELECT * FROM ParqueaderoTest.Usuario WHERE (idUsuario = ?)',[idUsuario]);
+    res.render('users/edit',{list:users});
+});
+
 module.exports= router;
