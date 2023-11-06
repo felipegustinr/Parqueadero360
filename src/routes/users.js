@@ -19,7 +19,7 @@ router.post('/register', async (req, res)=> {
         address
     };
     await pool.query('INSERT INTO Usuario (nombres, email, phone, address) VALUES (?, ?, ?, ?)', [new_User.nombres, new_User.email, new_User.phone, new_User.address]);
-    req.flash('success','Dato creado correctamente');
+    req.flash('success', 'Dato creado correctamente');
     res.redirect('/users')
 });
 
@@ -31,6 +31,7 @@ router.get('/', async (req, res)=>{
 router.get('/delete/:idUsuario', async (req, res) =>{
     const {idUsuario} = req.params;
     await pool.query('DELETE FROM Usuario WHERE (idUsuario = ? )',[idUsuario]);
+    req.flash('success', 'Dato Eliminado correctamente');
     res.redirect('/users');
 });
 
@@ -50,6 +51,7 @@ router.post('/edit/:idUsuario', async (req,res)=>{
         address
     };
     await pool.query('UPDATE Usuario SET ? WHERE idUsuario = ? ',[editedUser,idUsuario]);
+    req.flash('success', 'Dato Editado correctamente');
     res.redirect('/users');
 });
 
