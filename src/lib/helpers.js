@@ -6,11 +6,11 @@ helpers.encryptPassword = async (password) => {
     return hash;
 };
 
-helpers.matchPassword = async(password, savePassword) => {
-try {
-    await bcrypt.compare(password,savePassword);
-} catch (error) {
-    console.log(error)
-}
+helpers.matchPassword = async (password, savePassword) => {
+    try {
+        await bcrypt.compare(password, savePassword);
+    } catch (error) {
+        console.log(error)
+    }
 }
 module.exports = helpers;
