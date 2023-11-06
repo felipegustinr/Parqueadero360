@@ -1,20 +1,20 @@
 <div class="container p-4">
     <div class="row">
-        {{#each users}}
+        {{#each vehicles}}
             <div class="col-md-3">
                 <div class="card text-center">
                     <div class="car body">
                         <a href="">
                             <h3 class="card-title text-uppercase">
-                                {{nombres}}
+                                {{marca}}
                             </h3>
                         </a>
-                        <p class="m-2">Correo Electronico: {{email}}</p>
-                        <p class="m-2"> Telefono: {{phone}}</p>
-                        <p class="m-2">Dirección: {{address}}</p>
-                        <p class="m-2"> Creado hace: {{ created}}</p>
-                        <a href="/users/edit/{{idUsuario}}" class="btn btn-secondary">Editar</a>
-                        <a href="/users/delete/{{idUsuario}}" class="btn btn-danger">Eliminar</a>
+                        <p class="m-2">Modelo: {{modelo}}</p>
+                        <p class="m-2"> Placa: {{placa}}</p>
+                        <p class="m-2">Color: {{color}}</p>
+                        <p class="m-2"> Creado el: {{ created}}</p>
+                        <a href="/vehicles/edit/{{idVehiculo}}" class="btn btn-secondary">Editar</a>
+                        <a href="/vehicles/delete/{{idVehiculo}}" class="btn btn-danger">Eliminar</a>
                     </div>
                 </div>
             </div>
@@ -22,7 +22,7 @@
             <div class="col-md-4 mx-auto">
                 <div class="card card-body text-center">
                     <p >No hay Datos creados</p>
-                    <a href="/users/register">Crear</a>
+                    <a href="/vehicles/register">Crear</a>
                 </div>
             </div>
             {{/each}}
