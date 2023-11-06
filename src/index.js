@@ -39,7 +39,7 @@ app.use(express.json());
 
 //variables globales
 app.use((req, res, next) => {
-    app.locals.correcto = req.flash('correcto');
+    app.locals.success = req.flash('success');
     next();
 });
 
