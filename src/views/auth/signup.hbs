@@ -2,9 +2,33 @@
     <div class="row">
         <div class="col-md-4 mx-auto">
             <div class="card text-center">
-               <div class="card-header">
-                
-               </div>
+                <div class="card-header">
+                    <h3>Registrarse</h3>
+                </div>
+                <div class="card-body">
+                    <form action="/signup" method="POST">
+                        <div class="form-group">
+                            <label for="nombresCompletos" class="form-label">Nombres Completos</label>
+                            <input type="text" class="form-control" name="nombresCompletos"
+                                placeholder="Nombres y Apellidos" autofocus required>
+                        </div>
+                        <div class="form-group">
+                            <label for="nombreUsuario" class="form-label">Nombre de Usuario</label>
+                            <input type="text" class="form-control" name="nombreUsuario" placeholder="nombreusuario"
+                                required>
+                        </div>
+                        <div class="form-group">
+                            <label for="password" class="form-label">Contraseña</label>
+                            <input type="password" class="form-control" name="password" placeholder="putoelquelolea"
+                                required>
+                        </div>
+                        <div class="form-group">
+                            <button type="submit" class="btn btn-success btn-block">
+                                Registrarse
+                            </button>
+                        </div>
+                    </form>
+                </div>
             </div>
         </div>
     </div>
