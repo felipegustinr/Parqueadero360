@@ -1,6 +1,7 @@
 const express = require('express');
 const router = express.Router();
 
+
 const pool= require('../database');
 
 router.get('/register',(req, res) =>{
@@ -18,7 +19,7 @@ router.post('/register', async (req, res)=> {
         address
     };
     await pool.query('INSERT INTO Usuario (nombres, email, phone, address) VALUES (?, ?, ?, ?)', [new_User.nombres, new_User.email, new_User.phone, new_User.address]);
-    res.flash('correcto','Dato creado correctamente');
+    req.flash('success','Dato creado correctamente');
     res.redirect('/users')
 });
 
