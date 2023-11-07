@@ -4,9 +4,9 @@ const LocalStrategy = require('passport-local');
 const pool = require('../database')
 const helpers = require('../lib/helpers');
 
-passport.use('local.signin', new LocalStrategy({
-     
-}));
+// passport.use('local.signin', new LocalStrategy({
+
+// }));
 
 passport.use('local.signup', new LocalStrategy({
     usernameField: 'nombreUsuario',
