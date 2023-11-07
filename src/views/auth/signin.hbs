@@ -1,0 +1,33 @@
+<div class="container p-4">
+    <div class="row">
+        <div class="col-md-6 mx-auto">
+            <div class="card text-center">
+                <div class="card-header">
+                    <h3>Iniciar Sesión</h3>
+                </div>
+                <div class="card-body">
+                    <form action="/signin" method="POST">
+                        <div class="form-group">
+                            <label for="nombreUsuario" class="form-label">Nombre de Usuario</label>
+                            <input type="text" class="form-control" name="nombreUsuario" placeholder="nombreusuario"
+                                required>
+                        </div>
+                        <div class="form-group">
+                            <label for="password" class="form-label">Contraseña</label>
+                            <input type="password" class="form-control" name="password" placeholder="putoelquelolea"
+                                required>
+                        </div>
+                        <div class="form-group">
+                            <br>
+                            <div class="d-grid gap-2">
+                                <button class="btn btn-primary">Iniciar Sesión</button>
+                                <a href="/" class="btn btn-light" type="button">Cancelar</a>
+                            </div>
+
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
