@@ -9,10 +9,17 @@ passport.use('local.signin', new LocalStrategy({
     passwordField: 'password',
     passReqToCallback: true,
 }, async (req, nombreUsuario, password, done) => {
-   const rows = await pool.query('SELECT * FROM  Usuario WHERE nombreUsuario = ?', [nombreUsuario]);
+    const rows = await pool.query('SELECT * FROM  Usuario WHERE nombreUsuario = ?', [nombreUsuario]);
     if (rows > 0) {
-        const usuario = rows[0];
-        helpers.matchPassword(password, usuario.password);
+        const newUser = rows[0];
+        const validPassword = helpers.matchPassword(password, newUser.password);
+        if (validPassword) {
+            done(null, newUser, req.flash('success','Bienvenido ' + newUser.nombresCompletos));
+        } else {
+            done(null, false, req.flash('message','Contraseña invalida para ' + newUser.nombreUsuario + ' Verifique e intente nuevamente'));
+        }
+    } else {
+        return done(null, false, req.flash('message','El newUser ' + newUser.nombreUsuario + ' no se encuentra Registrado'));
     }
 }));
 
