@@ -7,19 +7,22 @@ const helpers = require('../lib/helpers');
 passport.use('local.signin', new LocalStrategy({
     usernameField: 'nombreUsuario',
     passwordField: 'password',
-    passReqToCallback: true,
+    passReqToCallback: true
 }, async (req, nombreUsuario, password, done) => {
     const rows = await pool.query('SELECT * FROM  Usuario WHERE nombreUsuario = ?', [nombreUsuario]);
-    if (rows > 0) {
-        const newUser = rows[0];
-        const validPassword = helpers.matchPassword(password, newUser.password);
+    if (rows.length > 0) {
+        console.log(req.body);
+        const nombreUsuario = rows[0];
+        const validPassword = await helpers.matchPassword(this.password, nombreUsuario.password);
+        console.log(req.body);
+        
         if (validPassword) {
-            done(null, newUser, req.flash('success','Bienvenido ' + newUser.nombresCompletos));
+            done(null, nombreUsuario, req.flash('success', 'Bienvenido ' + nombreUsuario.nombresCompletos));
         } else {
-            done(null, false, req.flash('message','Contraseña invalida para ' + newUser.nombreUsuario + ' Verifique e intente nuevamente'));
+            done(null, false, req.flash('message', 'Contraseña invalida para ' + nombreUsuario.nombreUsuario + ' Verifique e intente nuevamente'));
         }
     } else {
-        return done(null, false, req.flash('message','El newUser ' + newUser.nombreUsuario + ' no se encuentra Registrado'));
+        return done(null, false, req.flash('message', 'El usuario ' + nombreUsuario + ' no se encuentra registrado'));
     }
 }));
 
@@ -34,11 +37,11 @@ passport.use('local.signup', new LocalStrategy({
         nombreUsuario,
         password,
         nombresCompletos
-
     };
     newUser.password = await helpers.encryptPassword(password);
     const result = await pool.query('INSERT INTO Usuario (nombresCompletos, nombreUsuario, password) VALUES (?, ?, ?)', [newUser.nombresCompletos, newUser.nombreUsuario, newUser.password]);
     newUser.idUsuario = result.insertId;
+    req.flash('success','Usuario '+nombresCompletos+' registrado Correctamente');
     return done(null, newUser);
 }));
 
@@ -48,5 +51,5 @@ passport.serializeUser((nombreUsuario, done) => {
 
 passport.deserializeUser(async (idUsuario, done) => {
     const rows = await pool.query('SELECT * FROM Usuario WHERE idUsuario = ? ', [idUsuario]);
-    return done(null, true);
+    done(null, rows[0]);
 });
