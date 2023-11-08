@@ -4,9 +4,18 @@ const LocalStrategy = require('passport-local');
 const pool = require('../database')
 const helpers = require('../lib/helpers');
 
-// passport.use('local.signin', new LocalStrategy({
+passport.use('local.signin', new LocalStrategy({
+    usernameField: 'nombreUsuario',
+    passwordField: 'password',
+    passReqToCallback: true,
+}, async (req, nombreUsuario, password, done) => {
+   const rows = await pool.query('SELECT * FROM  Usuario WHERE nombreUsuario = ?', [nombreUsuario]);
+    if (rows > 0) {
+        const usuario = rows[0];
+        helpers.matchPassword(password, usuario.password);
+    }
+}));
 
-// }));
 
 passport.use('local.signup', new LocalStrategy({
     usernameField: 'nombreUsuario',
@@ -32,5 +41,5 @@ passport.serializeUser((nombreUsuario, done) => {
 
 passport.deserializeUser(async (idUsuario, done) => {
     const rows = await pool.query('SELECT * FROM Usuario WHERE idUsuario = ? ', [idUsuario]);
-    done(null, rows[0]);
+    return done(null, true);
 });
