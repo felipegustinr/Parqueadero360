@@ -1,29 +1,29 @@
 const passport = require('passport');
-const LocalStrategy = require('passport-local');
-
-const pool = require('../database')
+const LocalStrategy = require('passport-local').Strategy;
+const pool = require('../database');
 const helpers = require('../lib/helpers');
 
 passport.use('local.signin', new LocalStrategy({
     usernameField: 'nombreUsuario',
     passwordField: 'password',
-    passReqToCallback: true,
+    passReqToCallback: true
 }, async (req, nombreUsuario, password, done) => {
-    const rows = await pool.query('SELECT * FROM  Usuario WHERE nombreUsuario = ?', [nombreUsuario]);
-    console.log(req.body);
-    if (rows.length > 0) {
-        console.log(req.body);
-        const nombreUsuario = rows[0];
-        const validPassword =  await helpers.matchPassword(password,nombreUsuario.password);
-        console.log(req.body);
-        
-        if (validPassword) {
-            done(null, nombreUsuario, req.flash('success', 'Bienvenido ' + nombreUsuario.nombresCompletos));
+    try {
+        const rows = await pool.query('SELECT * FROM Usuario WHERE nombreUsuario = ?', [nombreUsuario]);
+        if (rows.length > 0) {
+            const usuarioEncontrado = rows[0];
+            const validPassword = await helpers.matchPassword(password, usuarioEncontrado.password);
+            if (validPassword) {
+                done(null, usuarioEncontrado, req.flash('success', 'Bienvenido ' + usuarioEncontrado.nombresCompletos));
+            } else {
+                done(null, false, req.flash('error', 'Contraseña incorrecta para ' + usuarioEncontrado.nombreUsuario + '. Verifique e intente nuevamente'));
+            }
         } else {
-            done(null, false, req.flash('message', 'Contraseña invalida para ' + nombreUsuario.nombreUsuario + ' Verifique e intente nuevamente'));
+            done(null, false, req.flash('error', 'El usuario ' + nombreUsuario + ' no se encuentra registrado'));
         }
-    } else {
-        return done(null, false, req.flash('message', 'El usuario ' + nombreUsuario + ' no se encuentra registrado'));
+    } catch (error) {
+        console.error(error);
+        done(error);
     }
 }));
 
