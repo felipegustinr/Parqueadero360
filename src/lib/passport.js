@@ -40,7 +40,8 @@ passport.use('local.signup', new LocalStrategy({
         nombresCompletos
     };
     newUser.password = await helpers.encryptPassword(password);
-    const result = await pool.query('INSERT INTO Usuario (nombresCompletos, nombreUsuario, password) VALUES (?, ?, ?)', [newUser.nombresCompletos, newUser.nombreUsuario, newUser.password]);
+    const result = await pool.query('INSERT INTO Usuario (nombresCompletos, nombreUsuario, password) VALUES (?, ?, ?)', 
+    [newUser.nombresCompletos, newUser.nombreUsuario, newUser.password]);
     newUser.idUsuario = result.insertId;
     req.flash('success','Usuario '+nombresCompletos+' registrado Correctamente');
     return done(null, newUser);
