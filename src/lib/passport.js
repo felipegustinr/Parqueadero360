@@ -32,7 +32,8 @@ passport.use('local.signup', new LocalStrategy({
     usernameField: 'nombreUsuario',
     passwordField: 'password',
     passReqToCallback: true
-}, async (req, nombreUsuario, password, done) => {
+}, 
+async (req, nombreUsuario, password, done) => {
     const { nombresCompletos } = req.body;
     const newUser = {
         nombreUsuario,
@@ -47,8 +48,8 @@ passport.use('local.signup', new LocalStrategy({
     return done(null, newUser);
 }));
 
-passport.serializeUser((nombreUsuario, done) => {
-    done(null, nombreUsuario.idUsuario);
+passport.serializeUser((newUser, done) => {
+    done(null, newUser.idUsuario);
 });
 
 passport.deserializeUser(async (idUsuario, done) => {
