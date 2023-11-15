@@ -1,7 +1,8 @@
 const express = require('express');
 const router = express.Router();
-
 const passport = require('passport')
+
+// MODULO DE AUTENTICACIÓN
 
 router.get('/signup', (req, res) => {
     res.render('auth/signup');
