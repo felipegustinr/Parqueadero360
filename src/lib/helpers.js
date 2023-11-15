@@ -2,6 +2,7 @@ const bcrypt = require('bcryptjs');
 
 const helpers = {};
 
+// MODULO DE ENCRIPTACIÓN CONTRASEÑA
 helpers.encryptPassword = async (password) => {
     try {
         const saltRounds = 10;
@@ -14,6 +15,7 @@ helpers.encryptPassword = async (password) => {
     }
 };
 
+//MODULO DE COINCIDENCIA DE CONTRASEÑAS
 helpers.matchPassword = async (password, hashedPassword) => {
     try {
         const passwordMatch = await bcrypt.compare(password, hashedPassword);
