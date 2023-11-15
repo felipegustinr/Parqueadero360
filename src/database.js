@@ -1,11 +1,10 @@
 const mysql = require('mysql');
 const {promisify} = require('util');
-
 const { database } = require('./keys');
 const { error } = require('console');
-
 const pool = mysql.createPool(database);
 
+//MODULO DE PRUEBA DE CONEXION DE LA DB
 pool.getConnection((error, connection) => {
     if (error) {
 
