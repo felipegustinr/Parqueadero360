@@ -8,12 +8,12 @@ const MySQLStore = require('express-mysql-session')(session);
 const passport = require ('passport');
 
 const {database} = require('./keys');
-//inicializacion
+// Modulo de inicializacion
 const app= express();
 require('./lib/passport');
 
 
-//configuracion
+// moddulo de configuracion
 app.set('port', process.env.PORT || 5500);
 app.set('views', path.join(__dirname,'views'));
 app.engine('.hbs',engine({
@@ -26,7 +26,7 @@ app.engine('.hbs',engine({
 
 app.set('view engine','.hbs');
 
-//funciones 
+// modulo de funciones
 app.use(session({
     secret: 'parking360SQLSession',
     resave: false,
@@ -41,7 +41,7 @@ app.use(passport.initialize());
 app.use(passport.session());
 
 
-//variables globales
+// modulo de variables globales
 app.use((req, res, next) => {
     app.locals.success = req.flash('success');
     app.locals.message = req.flash('message');
@@ -49,15 +49,15 @@ app.use((req, res, next) => {
     next();
 });
 
-//rutas
+// modulo de rutas
 app.use(require('./routes'));
 app.use(require('./routes/authentication'));
 app.use('/vehicles',require('./routes/vehicles'));
 
-//archivos publicos
+//modulo archivos publicos
 app.use(express.static(path.join(__dirname,'public')));
 
-//server start
+//modulo de server start
 app.listen(app.get('port'), () => {
     console.log('Servidor funcionando en el puerto', app.get('port'));
 });
