@@ -3,6 +3,8 @@ const LocalStrategy = require('passport-local').Strategy;
 const pool = require('../database');
 const helpers = require('../lib/helpers');
 
+
+// MODULO DE INICIO DE SESIÓN
 passport.use('local.signin', new LocalStrategy({
     usernameField: 'nombreUsuario',
     passwordField: 'password',
@@ -27,7 +29,7 @@ passport.use('local.signin', new LocalStrategy({
     }
 }));
 
-
+// MODULO DE REGISTRO DE USUARIOS 
 passport.use('local.signup', new LocalStrategy({
     usernameField: 'nombreUsuario',
     passwordField: 'password',
@@ -48,6 +50,7 @@ async (req, nombreUsuario, password, done) => {
     return done(null, newUser);
 }));
 
+// MODULOS DE SERILIZACION DE USUARIOS Y DESERILIZACIÓN DE USUARIOS
 passport.serializeUser((newUser, done) => {
     done(null, newUser.idUsuario);
 });
