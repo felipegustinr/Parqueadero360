@@ -1,3 +1,5 @@
+
+// MODULO DE REGISTRAR HORA
 const {format, render} = require ('timeago.js');
 
 
